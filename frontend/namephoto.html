@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.min.css">
+  <style>
+    /* Custom style for reversing the order of the button */
+    .reverse-button {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  </style>
+  <title>Image Upload and Crop</title>
+</head>
+<body>
+    <div class="d-flex justify-content-between reverse-button m-4">
+      <button class="btn btn-primary" id="viewButton">View</button>
+    </div>
+  <div class="container mt-5">
+    <h2 class="mb-4">Image Upload and Crop</h2>
+
+
+    <form id="imageForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+      </div>
+
+      <div class="form-group">
+        <label for="image">Photo</label>
+        <input type="file" class="form-control-file" id="image" accept="image/*">
+      </div>
+
+      <!-- <div class="form-group">
+        <img id="preview" class="img-fluid" alt="Preview Image">
+      </div> -->
+
+      <button type="button" class="btn btn-primary" onclick="cropImage()">Crop and Upload</button>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/cropperjs"></script>
+  <script>
+    $(document).ready(function() {
+      // Initialize Cropper.js
+      var image = document.getElementById('preview');
+      var cropper;
+
+      $('#image').change(function(event) {
+        var input = event.target;
+        var reader = new FileReader();
+
+        reader.onload = function() {
+          image.src = reader.result;
+          if (cropper) {
+            cropper.destroy();
+          }
+          cropper = new Cropper(image, {
+            aspectRatio: 1, // Set the aspect ratio as needed
+            viewMode: 2,
+            autoCropArea: 1,
+          });
+        };
+
+        reader.readAsDataURL(input.files[0]);
+      });
+
+      // View button click event
+      $('#viewButton').click(function() {
+        // Show the original image without cropping
+        if (cropper) {
+          cropper.destroy();
+        }
+        image.src = ''; // Set the source to the original image
+      });
+    });
+
+    function cropImage() {
+      if (cropper) {
+        // Get the cropped data
+        var croppedData = cropper.getCroppedCanvas().toDataURL();
+
+        // Send the cropped data to the server for storage
+        // This is where you'd make an AJAX request to your server
+
+        // For example, using fetch API:
+        // fetch('/upload', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify({ name: $('#name').val(), image: croppedData }),
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //   console.log('Success:', data);
+        // })
+        // .catch((error) => {
+        //   console.error('Error:', error);
+        // });
+      }
+    }
+  </script>
+</body>
+</html>
