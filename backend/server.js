@@ -22,6 +22,20 @@ mongoose.connect(connectionString)
 .then(() => console.log('Connected to the database…'))
 .catch((err) => console.error('Connection error:', err));
 
+app.get('/',(req,res)=>{
+    res.send('home page')
+})
+
+app.get('/user', (req, res) => {
+    // Serve user.html for /user route
+    res.sendFile(path.join(__dirname, '../frontend/indexuser.html'));
+  });
+  
+  app.get('/admin', (req, res) => {
+    // Serve admin.html for /admin route
+    res.sendFile(path.join(__dirname, '../frontend/indexadmin.html'));
+  });
+
 app.listen(3000,()=>{
     console.log("server is listening");
 })
