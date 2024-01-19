@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>User Table</title>
+  <style>
+    .table-container {
+      width: 80%;
+      margin: 20px auto;
+      padding-top: 20px;
+    }
+    .back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+    <a href="createuser.html" class="m-4 btn btn-outline-primary">Back</a> <!-- Back Button -->
+  <div class="container table-container">
+    <!-- <button type="button" class="btn btn-outline-primary">Delete</button> -->
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Photo</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Add rows with user data here -->
+        <tr>
+          <td>1</td>
+          <td>John Doe</td>
+          <td><img src="user_photo.jpg" alt="User Photo" style="width: 50px;"></td>
+          <td>
+            <button type="button" class="btn btn-primary">Done</button>
+            <!-- <button type="button" class="btn btn-danger"></button> -->
+            <button type="button" class="btn btn-outline-primary">Delete</button>
+
+          </td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
