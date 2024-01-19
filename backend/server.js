@@ -47,6 +47,16 @@ app.post("/submitForm", async (req, res) => {
     res.status(500).json({ error: "Error saving user to the database." });
   }
 });
+
+app.post("/check",async (req,res)=>{
+  const { userid, password } = req.body;
+  const existUsername = await User.findOne({ userid,password});
+   if (existUsername) {
+     console.log('username taken');
+   }
+})
+
+app.post()
 app.listen(3000, () => {
   console.log("server is listening");
 });
