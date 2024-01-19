@@ -1,8 +1,9 @@
-const mongoose=require('mongoose')
+const mongoose = require("mongoose");
 
-const schema= new mongoose.Schema({
-    user_id:Number,
-    password: String,
-    name: String
+const schema = new mongoose.Schema({
+  userid: Number,
+  password: String,
+  name: String,
+  imageUrl: String,
 });
-module.exports=mongoose.model("scehma",schema);
+module.exports = mongoose.model("schema", schema);
